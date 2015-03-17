@@ -1,1 +1,1 @@
-include ':app', ':bibliotecarungroup', ':backend'
+include ':app', ':backend', ':endpoint-backend'
