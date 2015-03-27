@@ -3,4 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar1"
+        android:layout_gravity="center_horizontal"
+        android:minWidth="250dp"
+        android:minHeight="30dp"
+        android:indeterminate="false" />
 </LinearLayout>
