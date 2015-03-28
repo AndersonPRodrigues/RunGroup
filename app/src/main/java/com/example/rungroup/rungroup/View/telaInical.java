@@ -12,40 +12,32 @@ import com.example.rungroup.rungroup.R;
 /**
  * Created by Anderson on 27/03/2015.
  */
-public class telaInical extends Activity{
+public class telaInical extends Activity {
+    private static final int PROGRESS = 0x1;
 
-    ProgressBar progressBar;
-    int progress = 0;
-    Handler handler = new Handler();
+    private ProgressBar mProgress;
+    private int mProgressStatus = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private Handler mHandler = new Handler();
+
+    protected void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+
         setContentView(R.layout.tela_inicial);
-        progressBar = (ProgressBar)findViewById(R.id.progressBar1);
+
+        mProgress = (ProgressBar) findViewById(R.id.progress_bar);
+
+        // Start lengthy operation in a background thread
         new Thread(new Runnable() {
-            @Override
             public void run() {
-                for(int i=0;i<10;i++)
-                {
-                    progress+=20;
-                    handler.post(new Runnable() {
-                        @Override
+                while (mProgressStatus < 100) {
+
+                    // Update the progress bar
+                    mHandler.post(new Runnable() {
                         public void run() {
-                            progressBar.setProgress(progress);
-                            if(progress == progressBar.getMax())
-                            {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                            }
+                            mProgress.setProgress(mProgressStatus);
                         }
                     });
-
-                    try {
-                        Thread.sleep(3000);
-                    }catch (InterruptedException e){
-
-                    }
                 }
             }
         }).start();
