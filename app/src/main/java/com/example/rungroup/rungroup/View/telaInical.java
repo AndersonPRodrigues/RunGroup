@@ -1,13 +1,10 @@
 package com.example.rungroup.rungroup.View;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import com.example.rungroup.rungroup.MainActivity;
 import com.example.rungroup.rungroup.R;
 
@@ -23,9 +20,9 @@ public class telaInical extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Show the splash screen
+        // Mostrar a tela inicial
         setContentView(R.layout.tela_inicial);
-        // Find the progress bar
+        // Procura o progress bar
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         new Thread(new Runnable() {
