@@ -1,10 +1,12 @@
 package com.example.rungroup.rungroup.View;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.rungroup.rungroup.MainActivity;
 import com.example.rungroup.rungroup.R;
@@ -13,33 +15,45 @@ import com.example.rungroup.rungroup.R;
  * Created by Anderson on 27/03/2015.
  */
 public class telaInical extends Activity {
-    private static final int PROGRESS = 0x1;
 
-    private ProgressBar mProgress;
-    private int mProgressStatus = 0;
+    ProgressBar progressBar;
+    int progressStatus = 0;
+    Handler handler = new Handler();
 
-    private Handler mHandler = new Handler();
-
-    protected void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Show the splash screen
         setContentView(R.layout.tela_inicial);
+        // Find the progress bar
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
-        mProgress = (ProgressBar) findViewById(R.id.progress_bar);
-
-        // Start lengthy operation in a background thread
         new Thread(new Runnable() {
             public void run() {
-                while (mProgressStatus < 100) {
-
-                    // Update the progress bar
-                    mHandler.post(new Runnable() {
-                        public void run() {
-                            mProgress.setProgress(mProgressStatus);
+                while (progressStatus < 100)
+                {
+                    progressStatus += 1;
+                    handler.post(new Runnable()
+                    {
+                        public void run()
+                        {
+                            progressBar.setProgress(progressStatus);
                         }
                     });
+                    try
+                    {
+                        Thread.sleep(200);
+                    }
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                if (progressStatus==100)
+                {
+                    Intent i = new Intent(telaInical.this, MainActivity.class);
+                    startActivity(i);
                 }
             }
         }).start();
-    }
-}
+    }}
