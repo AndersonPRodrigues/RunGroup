@@ -48,7 +48,7 @@ public class telaInical extends Activity {
                 }
                 if (progressStatus==100)
                 {
-                    Intent i = new Intent(telaInical.this, MainActivity.class);
+                    Intent i = new Intent(telaInical.this, telaAcesso.class);
                     startActivity(i);
                 }
             }
