@@ -23,6 +23,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".View.telaAcesso" >
+        </activity>
+
     </application>
 
 </manifest>
