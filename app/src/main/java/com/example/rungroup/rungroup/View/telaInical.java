@@ -20,7 +20,7 @@ public class telaInical extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Mostrar a tela inicialasdasd
+        // Mostrar a tela inicial
         setContentView(R.layout.tela_inicial);
         // Procura o progress bar
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
